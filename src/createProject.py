@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Creates a new project for a given language.
 """
@@ -77,7 +79,9 @@ def get_settings(args : argparse.Namespace) -> dict:
     else:
         project_dirs = confops.get_project_dirs(settings_options["config_path"])
         if args.ProjectLanguage:
-            settings_options["parent_dir"] = project_dirs[args.ProjectLanguage]
+            settings_options["parent_dir"] = project_dirs[
+                args.ProjectLanguage.lower() # Get language in all lowercase
+            ]
         else:
             settings_options["parent_dir"] = project_dirs[
                 confops.get_default_settings(settings_options["config_path"])[
